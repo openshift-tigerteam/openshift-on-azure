@@ -10,7 +10,7 @@ You have installed Azure CLI on you localhost. We will first create a jumpserver
 #### Set Environment Variables
 On the local workstation, set the following environment variables.
 
-Use your own values here - 
+Use your own values here -
 
 ```
 location="westus2"
@@ -34,7 +34,7 @@ source ./createNetworkSecurityGroup.sh
 The script has the following commands
 
 ```
-$ cat createNetworkSecurityGroup.sh 
+$ cat createNetworkSecurityGroup.sh
 azure network nsg create --resource-group $resourceGroupName \
       --name $networkSecurityGroup \
       --location $location
@@ -111,7 +111,7 @@ azure network nsg rule create --resource-group $resourceGroupName \
     --access Allow \
     --priority 152 \
     --direction Inbound
-    
+
 ```
 
 You can verify the rules by running
@@ -125,13 +125,13 @@ azure network nsg show --resource-group $resourceGroupName \
 This is a one time task. If you already have one, skip this step.
 
 ```
-azure storage account create --name $storageAccountName --resource-group $resourceGroupName --sku Premium_LRS --kind Storage --location $location
+azure storage account create $storageAccountName --resource-group $resourceGroupName --sku-name LRS --kind Storage --location $location
 ```
 
 Verify by running
 
 ```
-azure storage account show -n $storageAccountName --resource-group $resourceGroupName
+azure storage account show $storageAccountName --resource-group $resourceGroupName
 ```
 
 #### Create Network and Subnet
@@ -151,7 +151,7 @@ azure network vnet create --resource-group $resourceGroupName \
 azure network vnet subnet create --resource-group $resourceGroupName \
     --vnet-name $vnetName \
     --address-prefix $subnetAddressPrefix \
-    --name $subnetName 
+    --name $subnetName
 ```
 
 #### Find your Subnet Id
@@ -192,8 +192,8 @@ Create a PublicIP, NIC and a VM that we will use as a Jump Server.
 azure network public-ip create --resource-group $resourceGroupName \
     --name $publicIPName \
     --location $location \
-    --allocation-method Static 
-    
+    --allocation-method Static
+
 azure network nic create --name $nicName     --resource-group $resourceGroupName     --location $location     --subnet $subnetName --vnet-name openshift-workshop-eastus-vnet --network-security-group $networkSecurityGroup     --public-ip-address $publicIPName             
 
 
@@ -263,7 +263,7 @@ Install atomic-openshift-utils
 
 ```
 subscription-manager register
-subscription-manager attach --pool <<your poolid>> 
+subscription-manager attach --pool <<your poolid>>
 subscription-manager repos --disable="*"
 subscription-manager repos     --enable="rhel-7-server-rpms"     --enable="rhel-7-server-extras-rpms"     --enable="rhel-7-server-ose-3.3-rpms"
 yum install -y atomic-openshift-utils
@@ -274,7 +274,7 @@ Generate SSH Keys. We will use these keys for logging into the OpenShift cluster
 
 ```
 ssh-keygen
-``` 
+```
 
 Install git
 
@@ -290,4 +290,3 @@ cd openshift-on-azure/createVMs
 ```
 
 Now we are ready to spin up VMs for the OpenShift cluster.
-
