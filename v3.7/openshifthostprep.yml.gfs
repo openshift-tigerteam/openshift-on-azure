@@ -41,7 +41,7 @@
     command: subscription-manager repos --disable="*"
 
   - name: Enable only required repositories with Subscription Manager
-    command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.7-rpms" --enable="rhel-7-fast-datapath-rpms"
+    command: subscription-manager repos --enable="rhel-7-server-rpms" --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.7-rpms" --enable="rhel-7-fast-datapath-rpms" --enable="rh-gluster-3-client-for-rhel-7-server-rpms"
 
   - name: Run yum update
     yum: name=* state=latest
@@ -58,6 +58,7 @@
   - yum: name=sos state=latest
   - yum: name=psacct state=latest
   - yum: name=atomic-openshift-utils state=latest
+  - yum: name=glusterfs-fuse state=latest
 
 
   - name: Install Docker
