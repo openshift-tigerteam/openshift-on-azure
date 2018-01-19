@@ -185,6 +185,7 @@ openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 
 
 ```
 
+### Setup NetworkManager
 Now you need to run the following to make sure NetworkManager working correctly
 echo $(date) " - Running network_manager.yml playbook"
 
